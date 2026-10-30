@@ -57,30 +57,30 @@ export function SessionJournal({ open, onClose }: { open: boolean; onClose: () =
 
   return (
     <aside
-      className="fixed inset-y-0 right-0 z-40 flex w-full max-w-sm flex-col border-l border-white/10 bg-zinc-950/95 backdrop-blur-xl"
+      className="fixed inset-y-0 right-0 z-40 flex w-full max-w-sm flex-col border-l border-line bg-surface/95 backdrop-blur-xl"
       aria-label="Journal de session"
     >
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-        <h2 className="text-sm font-medium text-white">Journal</h2>
+      <div className="flex items-center justify-between border-b border-line px-4 py-3">
+        <h2 className="text-sm font-medium text-foreground">Journal</h2>
         <button
           type="button"
           onClick={onClose}
-          className="rounded-md px-2 py-1 text-sm text-zinc-400 hover:text-white"
+          className="rounded-md px-2 py-1 text-sm text-secondary hover:text-secondary-hover"
         >
           Fermer
         </button>
       </div>
       <div className="flex-1 space-y-6 overflow-y-auto px-4 py-4">
         <section>
-          <h3 className="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Question</h3>
-          <p className="mt-2 text-sm leading-6 text-zinc-200">
+          <h3 className="text-[11px] uppercase tracking-[0.16em] text-muted">Question</h3>
+          <p className="mt-2 text-sm leading-6 text-foreground">
             {currentQuestion ?? "En attente de la première question."}
           </p>
         </section>
 
         <section>
-          <h3 className="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Voix</h3>
-          <dl className="mt-2 space-y-1 text-sm text-zinc-300">
+          <h3 className="text-[11px] uppercase tracking-[0.16em] text-muted">Voix</h3>
+          <dl className="mt-2 space-y-1 text-sm text-foreground">
             <div className="flex justify-between gap-4">
               <dt>Rythme</dt>
               <dd>{paceMessage}</dd>
@@ -98,10 +98,10 @@ export function SessionJournal({ open, onClose }: { open: boolean; onClose: () =
               <dd>{stressLevel}/100</dd>
             </div>
           </dl>
-          <div className="mt-2 h-1 rounded-full bg-white/10">
-            <div className="h-1 rounded-full bg-white/70" style={{ width: `${stressLevel}%` }} />
+          <div className="mt-2 h-1 rounded-full bg-stage">
+            <div className="h-1 rounded-full bg-secondary" style={{ width: `${stressLevel}%` }} />
           </div>
-          <p className="mt-3 text-sm text-zinc-400">
+          <p className="mt-3 text-sm text-muted">
             {fillerRows.length === 0
               ? "Aucun tic relevé."
               : fillerRows.map((row) => `« ${row.word} » × ${row.count}`).join(" · ")}
@@ -109,8 +109,8 @@ export function SessionJournal({ open, onClose }: { open: boolean; onClose: () =
         </section>
 
         <section>
-          <h3 className="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Non-verbal</h3>
-          <dl className="mt-2 space-y-1 text-sm text-zinc-300">
+          <h3 className="text-[11px] uppercase tracking-[0.16em] text-muted">Non-verbal</h3>
+          <dl className="mt-2 space-y-1 text-sm text-foreground">
             <div className="flex justify-between gap-4">
               <dt>Posture</dt>
               <dd>{postureLabel[nonverbal.posture]}</dd>
@@ -127,17 +127,17 @@ export function SessionJournal({ open, onClose }: { open: boolean; onClose: () =
         </section>
 
         <section>
-          <h3 className="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Transcription</h3>
+          <h3 className="text-[11px] uppercase tracking-[0.16em] text-muted">Transcription</h3>
           <ol className="mt-2 space-y-3">
             {transcript.length === 0 ? (
-              <li className="text-sm text-zinc-500">Le flux simulé n&apos;a pas encore parlé.</li>
+              <li className="text-sm text-muted">Le flux simulé n&apos;a pas encore parlé.</li>
             ) : (
               transcript.map((entry) => (
                 <li key={entry.id}>
-                  <p className="text-[11px] uppercase tracking-[0.14em] text-zinc-500">
+                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted">
                     {entry.speaker === "recruiter" ? "Interlocuteur" : "Vous"}
                   </p>
-                  <p className="mt-1 text-sm leading-6 text-zinc-200">{entry.text}</p>
+                  <p className="mt-1 text-sm leading-6 text-foreground">{entry.text}</p>
                 </li>
               ))
             )}
@@ -145,7 +145,7 @@ export function SessionJournal({ open, onClose }: { open: boolean; onClose: () =
           <div ref={endRef} />
         </section>
 
-        <p className="text-xs leading-5 text-zinc-500">
+        <p className="text-xs leading-5 text-muted">
           Signaux simulés pour la démonstration. Aucune donnée biométrique réelle n&apos;est
           calculée, et cette transcription n&apos;est pas conservée.
         </p>

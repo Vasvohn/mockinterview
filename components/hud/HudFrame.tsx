@@ -4,15 +4,15 @@ import { button } from "@/lib/ui";
 import type { SessionStatus, SpeechPace, Suggestion } from "@/lib/types";
 
 const paceTone: Record<SpeechPace, string> = {
-  "too-fast": "bg-rose-300",
-  optimal: "bg-emerald-300",
-  "too-slow": "bg-amber-300",
+  "too-fast": "bg-rose-600",
+  optimal: "bg-cta",
+  "too-slow": "bg-amber-500",
 };
 
 const paceText: Record<SpeechPace, string> = {
-  "too-fast": "text-rose-200",
-  optimal: "text-emerald-200",
-  "too-slow": "text-amber-200",
+  "too-fast": "text-rose-700",
+  optimal: "text-cta",
+  "too-slow": "text-amber-700",
 };
 
 const statusLabel: Record<SessionStatus, string> = {
@@ -67,7 +67,7 @@ export function HudFrame({
   return (
     <section
       aria-label="Copilote MockInterview"
-      className="w-[min(22rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-zinc-950/75 p-3.5 text-zinc-100 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.9)] backdrop-blur-xl"
+      className="w-[min(22rem,calc(100vw-2rem))] rounded-2xl border border-line bg-surface/95 p-3.5 text-foreground shadow-[0_18px_50px_-28px_rgba(44,51,58,0.45)] backdrop-blur-xl"
     >
       <header
         className={`flex items-center justify-between gap-3 ${
@@ -77,30 +77,30 @@ export function HudFrame({
         onPointerMove={onGripPointerMove}
         onPointerUp={onGripPointerUp}
       >
-        <p className="flex items-center gap-2 text-xs text-zinc-300">
+        <p className="flex items-center gap-2 text-xs text-foreground">
           <span
             className={`h-1.5 w-1.5 rounded-full ${
               status === "live"
-                ? "animate-pulse bg-emerald-300"
+                ? "animate-pulse bg-cta"
                 : status === "paused"
-                  ? "bg-amber-300"
-                  : "bg-zinc-500"
+                  ? "bg-amber-500"
+                  : "bg-muted"
             }`}
             aria-hidden
           />
           {statusLabel[status]}
         </p>
         {interactive ? (
-          <GripHorizontal className="h-4 w-4 text-zinc-500" aria-hidden />
+          <GripHorizontal className="h-4 w-4 text-muted" aria-hidden />
         ) : null}
       </header>
 
       <div className="mt-3" aria-live="polite">
-        <p className="text-[10px] uppercase tracking-[0.16em] text-zinc-500">Rythme</p>
-        <div className="relative mt-2 h-1.5 rounded-full bg-white/10">
+        <p className="text-[10px] uppercase tracking-[0.16em] text-muted">Rythme</p>
+        <div className="relative mt-2 h-1.5 rounded-full bg-stage">
           <span
             aria-hidden
-            className="absolute inset-y-0 left-[38%] w-[28%] rounded-full bg-emerald-300/25"
+            className="absolute inset-y-0 left-[38%] w-[28%] rounded-full bg-cta/25"
           />
           <span
             aria-hidden
@@ -111,15 +111,15 @@ export function HudFrame({
         <p className={`mt-2 text-[13px] ${paceText[pace]}`}>
           {paceMessage}
           {wordsPerMinute > 0 ? (
-            <span className="text-zinc-400"> · {wordsPerMinute} mots/min</span>
+            <span className="text-muted"> · {wordsPerMinute} mots/min</span>
           ) : null}
         </p>
       </div>
 
       <div className="mt-3.5">
-        <p className="text-[10px] uppercase tracking-[0.16em] text-zinc-500">Repères</p>
+        <p className="text-[10px] uppercase tracking-[0.16em] text-muted">Repères</p>
         {suggestions.length === 0 ? (
-          <p className="mt-2 text-[13px] text-zinc-500">Les repères arrivent avec la question.</p>
+          <p className="mt-2 text-[13px] text-muted">Les repères arrivent avec la question.</p>
         ) : (
           <ul
             key={suggestions.map((item) => item.id).join("|")}
@@ -128,7 +128,7 @@ export function HudFrame({
             {suggestions.slice(0, 3).map((item) => (
               <li
                 key={item.id}
-                className="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-[13px] leading-5 text-zinc-100"
+                className="rounded-lg border border-secondary/25 bg-secondary/10 px-2.5 py-1.5 text-[13px] leading-5 text-foreground"
               >
                 {item.text}
               </li>
@@ -137,7 +137,7 @@ export function HudFrame({
         )}
       </div>
 
-      {alert ? <p className="mt-3 text-[12px] leading-5 text-amber-100/90">{alert}</p> : null}
+      {alert ? <p className="mt-3 text-[12px] leading-5 text-amber-800">{alert}</p> : null}
 
       {interactive ? (
         <div className="mt-4 flex gap-2">

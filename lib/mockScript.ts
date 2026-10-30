@@ -1,3 +1,5 @@
+import { extraScripts } from "@/lib/extraSessions";
+import { buildStageScript, stageSessions } from "@/lib/stageSessions";
 import type { LiveTick, NonverbalState } from "@/lib/types";
 
 const calm: NonverbalState = {
@@ -398,6 +400,12 @@ export const scripts: Record<string, LiveTick[]> = {
     },
   ],
 };
+
+for (const session of stageSessions) {
+  scripts[session.id] = buildStageScript(session);
+}
+
+Object.assign(scripts, extraScripts);
 
 export function getBeats(profileId: string | null): LiveTick[] {
   if (profileId && scripts[profileId]) return scripts[profileId];

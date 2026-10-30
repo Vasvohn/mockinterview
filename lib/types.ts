@@ -46,7 +46,11 @@ export type ProfileKind =
   | "Entretien"
   | "Levée de fonds"
   | "Négociation"
-  | "Premier emploi";
+  | "Premier emploi"
+  | "Stage"
+  | "Alternance"
+  | "Oral"
+  | "Client";
 
 export interface InterviewProfile {
   id: string;

@@ -1,6 +1,8 @@
+import { extraProfiles } from "@/lib/extraSessions";
+import { stageProfiles } from "@/lib/stageSessions";
 import type { InterviewProfile } from "@/lib/types";
 
-export const profiles: readonly InterviewProfile[] = [
+const coreProfiles: readonly InterviewProfile[] = [
   {
     id: "entretien",
     kind: "Entretien",
@@ -33,6 +35,12 @@ export const profiles: readonly InterviewProfile[] = [
     focus: "Clarté, regard caméra, un projet concret.",
     durationMin: 30,
   },
+];
+
+export const profiles: readonly InterviewProfile[] = [
+  ...coreProfiles,
+  ...extraProfiles,
+  ...stageProfiles,
 ];
 
 export function getProfile(id: string | null): InterviewProfile | null {

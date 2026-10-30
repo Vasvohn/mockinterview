@@ -18,8 +18,8 @@ export function LiveSession() {
     return (
       <main id="contenu" className="grid min-h-screen place-items-center px-6">
         <div className="max-w-md text-center">
-          <h1 className="text-2xl font-medium tracking-tight text-white">Aucune session armée</h1>
-          <p className="mt-3 text-sm leading-6 text-zinc-400">
+          <h1 className="text-2xl font-medium tracking-tight text-foreground">Aucune session armée</h1>
+          <p className="mt-3 text-sm leading-6 text-muted">
             Choisissez un contexte dans le tableau de bord. Le copilote attend votre accord avant
             de s&apos;afficher.
           </p>

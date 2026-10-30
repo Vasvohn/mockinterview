@@ -119,7 +119,7 @@ function usedThisMonth(sessionsUsed: number, monthKey: string): number {
 /**
  * État global du copilote.
  * Transcription, suggestions, rythme et tension restent en mémoire.
- * Le plan de démo et le quota mensuel sont les seules données locales.
+ * Le plan et le quota mensuel sont les seules données locales.
  */
 export const useSessionStore = create<SessionState>((set, get) => ({
   ...freshSignals(),

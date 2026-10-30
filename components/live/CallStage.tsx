@@ -38,25 +38,25 @@ export function CallStage() {
 
   return (
     <div className="relative min-h-screen">
-      <header className="flex h-14 items-center justify-between gap-3 border-b border-white/10 px-4 sm:px-6">
+      <header className="flex h-14 items-center justify-between gap-3 border-b border-line bg-background/90 px-4 sm:px-6">
         <div className="flex min-w-0 items-center gap-3">
           <button
             type="button"
             onClick={leave}
             aria-label="Retour aux sessions"
-            className={`inline-flex items-center gap-1.5 rounded-md text-sm text-zinc-400 hover:text-white ${focusRing}`}
+            className={`inline-flex items-center gap-1.5 rounded-md text-sm text-muted hover:text-foreground ${focusRing}`}
           >
             <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline">Sessions</span>
           </button>
-          <span className="hidden h-4 w-px bg-white/10 sm:block" aria-hidden />
+          <span className="hidden h-4 w-px bg-line sm:block" aria-hidden />
           <Wordmark />
         </div>
         <div className="flex items-center gap-3 text-sm">
-          <p className="hidden truncate text-zinc-400 sm:block">
+          <p className="hidden truncate text-muted sm:block">
             {profile ? `${profile.kind} · ${profile.role}` : "Session"}
           </p>
-          <p className="tabular-nums text-zinc-200">{clock}</p>
+          <p className="tabular-nums text-foreground">{clock}</p>
           <button
             type="button"
             className={button.quiet}
@@ -69,49 +69,49 @@ export function CallStage() {
       </header>
 
       <main id="contenu" className="relative grid min-h-[calc(100vh-3.5rem)] place-items-center px-4 py-10">
-        <p className="absolute left-4 top-4 text-[11px] uppercase tracking-[0.16em] text-zinc-500 sm:left-6">
+        <p className="absolute left-4 top-4 text-[11px] uppercase tracking-[0.16em] text-muted sm:left-6">
           Démonstration · flux simulé
         </p>
-        <div className="aspect-video w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
+        <div className="aspect-video w-full max-w-4xl overflow-hidden rounded-2xl border border-line bg-stage">
           <div className="flex h-full flex-col items-center justify-center gap-5 px-6">
-            <div className="grid h-20 w-20 place-items-center rounded-full border border-white/10 text-sm tracking-wide text-zinc-200">
+            <div className="grid h-20 w-20 place-items-center rounded-full border border-line bg-surface text-sm tracking-wide text-foreground">
               {initials(profile?.company ?? "MockInterview")}
             </div>
             <div className="flex h-8 items-end gap-1" aria-hidden>
               {[0, 1, 2, 3, 4].map((index) => (
                 <span
                   key={index}
-                  className={`w-1 rounded-full bg-white/80 ${status === "live" ? "pf-bar h-6" : "h-1"}`}
+                  className={`w-1 rounded-full bg-secondary ${status === "live" ? "pf-bar h-6" : "h-1"}`}
                   style={status === "live" ? { animationDelay: `${index * 120}ms` } : undefined}
                 />
               ))}
             </div>
             <div className="text-center">
-              <p className="text-sm text-zinc-200">Interlocuteur</p>
-              <p className="mt-1 text-xs text-zinc-500">
+              <p className="text-sm text-foreground">Interlocuteur</p>
+              <p className="mt-1 text-xs text-muted">
                 {profile ? `${profile.company} · ${profile.durationMin} min` : "Visio"}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="absolute right-4 top-14 w-28 overflow-hidden rounded-xl border border-white/10 bg-zinc-900/80 p-3 sm:right-6 sm:top-16">
-          <p className="text-[11px] uppercase tracking-[0.14em] text-zinc-500">Vous</p>
-          <p className="mt-2 text-xs text-zinc-400">Aperçu local</p>
+        <div className="absolute right-4 top-14 w-28 overflow-hidden rounded-xl border border-line bg-surface p-3 sm:right-6 sm:top-16">
+          <p className="text-[11px] uppercase tracking-[0.14em] text-secondary">Vous</p>
+          <p className="mt-2 text-xs text-muted">Aperçu local</p>
         </div>
 
         {status === "ended" ? (
           <div className="absolute inset-x-0 top-24 grid place-items-center px-4 sm:top-28">
-            <div className="w-full max-w-md rounded-2xl border border-white/10 bg-zinc-950/90 p-5 backdrop-blur-xl">
-              <h2 className="text-lg font-medium tracking-tight text-white">Session arrêtée</h2>
-              <p className="mt-2 text-sm leading-6 text-zinc-400">
+            <div className="w-full max-w-md rounded-2xl border border-line bg-surface/95 p-5 shadow-xl backdrop-blur-xl">
+              <h2 className="text-lg font-medium tracking-tight text-foreground">Session arrêtée</h2>
+              <p className="mt-2 text-sm leading-6 text-muted">
                 Aucun audio et aucune vidéo n&apos;ont été conservés. Les derniers repères restent
                 dans le HUD jusqu&apos;à ce que vous quittiez la page.
               </p>
               {blocked ? (
-                <p className="mt-3 text-sm text-amber-200">
+                <p className="mt-3 text-sm text-amber-800">
                   Le quota du mois est atteint.{" "}
-                  <Link href="/offres" className="underline">
+                  <Link href="/offres" className="text-secondary underline">
                     Voir les offres
                   </Link>
                 </p>

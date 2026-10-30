@@ -22,22 +22,22 @@ export function ConsentGate() {
   return (
     <main id="contenu" className="grid min-h-screen place-items-center px-5 py-16">
       <div className="w-full max-w-lg">
-        <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-muted">
           {profile ? `${profile.kind} · ${profile.company}` : "Session"}
         </p>
-        <h1 className="mt-3 text-3xl font-medium tracking-tight text-white">
+        <h1 className="mt-3 text-3xl font-medium tracking-tight text-foreground">
           Autoriser cette session
         </h1>
-        <ul className="mt-6 space-y-3 text-sm leading-6 text-zinc-300">
+        <ul className="mt-6 space-y-3 text-sm leading-6 text-foreground">
           <li>Le copilote ne démarre que si vous l&apos;autorisez.</li>
           <li>Cette version simule le flux : le micro et la webcam restent fermés.</li>
           <li>Rien n&apos;est envoyé ni enregistré. Le compteur de sessions reste sur cet appareil.</li>
         </ul>
 
-        <label className="mt-6 flex items-start gap-3 text-sm leading-6 text-zinc-200">
+        <label className="mt-6 flex items-start gap-3 text-sm leading-6 text-foreground">
           <input
             type="checkbox"
-            className="mt-1 h-4 w-4 accent-white"
+            className="mt-1 h-4 w-4 accent-cta"
             checked={accepted}
             onChange={(event) => setAccepted(event.target.checked)}
           />
@@ -45,9 +45,9 @@ export function ConsentGate() {
         </label>
 
         {blocked ? (
-          <p className="mt-4 text-sm text-amber-200">
+          <p className="mt-4 text-sm text-amber-800">
             Le quota du mois est atteint.{" "}
-            <Link href="/offres" className="underline">
+            <Link href="/offres" className="text-secondary underline">
               Voir les offres
             </Link>
           </p>

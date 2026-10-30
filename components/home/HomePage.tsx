@@ -23,15 +23,15 @@ const signals = [
 export function HomePage() {
   return (
     <div className="mx-auto max-w-5xl px-5 pb-24 pt-16 sm:pt-20">
-      <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
+      <p className="text-[11px] uppercase tracking-[0.18em] text-muted">
         Entretiens · Levées · Négociations
       </p>
       <div className="mt-6 grid items-start gap-14 lg:grid-cols-[minmax(0,1.15fr)_22rem]">
         <div>
-          <h1 className="max-w-xl text-4xl font-medium tracking-tight text-white sm:text-5xl sm:leading-[1.05]">
+          <h1 className="max-w-xl text-4xl font-medium tracking-tight text-foreground sm:text-5xl sm:leading-[1.05]">
             Le copilote reste dans un coin de l&apos;écran.
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-zinc-400">
+          <p className="mt-5 max-w-xl text-base leading-7 text-muted">
             En visio, le poste, la levée ou le contrat se joue sur le rythme, la structure de la
             réponse et quelques gestes. MockInterview les suit pendant l&apos;appel et n&apos;affiche
             que l&apos;essentiel.
@@ -46,7 +46,7 @@ export function HomePage() {
           </div>
         </div>
         <div>
-          <p className="mb-3 text-[11px] uppercase tracking-[0.16em] text-zinc-500">
+          <p className="mb-3 text-[11px] uppercase tracking-[0.16em] text-muted">
             Affichage pendant l&apos;appel
           </p>
           <HudFrame
@@ -64,33 +64,34 @@ export function HomePage() {
         </div>
       </div>
 
-      <ol className="mt-16 divide-y divide-white/10 border-y border-white/10">
+      <ol className="mt-16 divide-y divide-line border-y border-line">
         {signals.map((signal) => (
           <li key={signal.kicker} className="grid gap-2 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
-            <h2 className="text-[11px] uppercase tracking-[0.16em] text-zinc-500">
+            <h2 className="text-[11px] uppercase tracking-[0.16em] text-muted">
               {signal.kicker}
             </h2>
             <div>
-              <p className="text-base font-medium text-white">{signal.title}</p>
-              <p className="mt-1 max-w-xl text-sm leading-6 text-zinc-400">{signal.body}</p>
+              <p className="text-base font-medium text-foreground">{signal.title}</p>
+              <p className="mt-1 max-w-xl text-sm leading-6 text-muted">{signal.body}</p>
             </div>
           </li>
         ))}
       </ol>
 
-      <section className="mt-14 grid gap-8 border-t border-white/10 pt-10 sm:grid-cols-[1.2fr_0.8fr]">
+      <section className="mt-14 grid gap-8 border-t border-line pt-10 sm:grid-cols-[1.2fr_0.8fr]">
         <div>
-          <h2 className="text-base font-medium text-white">Vous autorisez chaque session</h2>
-          <p className="mt-2 max-w-xl text-sm leading-6 text-zinc-400">
+          <h2 className="text-base font-medium text-foreground">Vous autorisez chaque session</h2>
+          <p className="mt-2 max-w-xl text-sm leading-6 text-muted">
             Cette version n&apos;ouvre ni le micro ni la webcam. Le flux est simulé, l&apos;échange
             n&apos;est pas enregistré, et le copilote ne démarre qu&apos;après un accord explicite.
             Les analyses futures resteront limitées aux réunions que vous lancez vous-même.
           </p>
         </div>
         <div>
-          <h2 className="text-base font-medium text-white">Offre visée</h2>
-          <p className="mt-2 text-sm leading-6 text-zinc-400">
-            Découverte 0 € · Semaine 19 € · Job Seeker 39 € · Sales &amp; Executive 149 €
+          <h2 className="text-base font-medium text-foreground">Offres</h2>
+          <p className="mt-2 text-sm leading-6 text-muted">
+            Découverte 0 € · Semaine 19 € · Job Seeker 39 € · Sales &amp; Executive 149 €.
+            Les offres payantes sont encaissées par Paddle.
           </p>
           <Link href="/offres" className={`${button.quiet} mt-4`}>
             Détail des offres

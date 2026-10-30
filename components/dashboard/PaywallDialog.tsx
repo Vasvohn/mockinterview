@@ -27,14 +27,14 @@ export function PaywallDialog({ open, onClose }: PaywallDialogProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="paywall-title"
-        className="w-full max-w-md rounded-2xl border border-white/10 bg-zinc-950 p-6 shadow-2xl"
+        className="w-full max-w-md rounded-2xl border border-line bg-surface p-6 shadow-2xl"
       >
-        <h2 id="paywall-title" className="text-lg font-medium tracking-tight text-white">
+        <h2 id="paywall-title" className="text-lg font-medium tracking-tight text-foreground">
           Les 3 sessions découverte sont utilisées
         </h2>
-        <p className="mt-3 text-sm leading-6 text-zinc-400">
-          Le quota du mois est atteint sur cet appareil. Les offres Job Seeker et Sales &amp;
-          Executive lèvent cette limite. Aucun paiement n&apos;est réalisé dans cette démo.
+        <p className="mt-3 text-sm leading-6 text-muted">
+          Le quota du mois est atteint sur cet appareil. Les offres payantes lèvent cette
+          limite. Leur paiement passe par Paddle.
         </p>
         <div className="mt-6 flex flex-wrap gap-2">
           <Link href="/offres" className={button.primary} onClick={onClose}>

@@ -6,13 +6,13 @@ export interface Plan {
   price: string;
   cadence: string;
   audience: string;
-  /** Null : pas de plafond dans la démo. */
+  /** Null : pas de plafond mensuel. */
   sessionLimit: number | null;
   highlighted?: boolean;
   features: readonly string[];
 }
 
-/** Prix visés du modèle. Le paiement n'est pas branché. */
+/** Prix encaissés par Paddle, sauf la découverte. */
 export const plans: readonly Plan[] = [
   {
     id: "free",
@@ -36,7 +36,7 @@ export const plans: readonly Plan[] = [
     audience: "Une série d'entretiens rapprochés.",
     sessionLimit: null,
     features: [
-      "Sessions ouvertes dans la démo",
+      "Sessions ouvertes pendant le pass",
       "Tics de langage signalés",
       "Même HUD, même discrétion",
     ],
