@@ -1,10 +1,18 @@
 import type { NextConfig } from "next";
 
+const pages = process.env.GITHUB_PAGES === "1";
+
 const nextConfig: NextConfig = {
-  /* Hébergement statique GitHub Pages : https://vasvohn.github.io/mockinterview */
-  output: "export",
-  basePath: "/mockinterview",
-  images: { unoptimized: true },
+  ...(pages
+    ? {
+        output: "export" as const,
+        basePath: "/mockinterview",
+        images: { unoptimized: true },
+      }
+    : {
+        cacheComponents: true,
+        partialPrefetching: true,
+      }),
   turbopack: {
     rules: {
       "*.css": {
