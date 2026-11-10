@@ -12,6 +12,8 @@
   --cta-hover: #065f46;
   --secondary: #0e7490;
   --secondary-hover: #155e75;
+  --danger: #9f1239;
+  --caution: #78350f;
 }
 
 @theme inline {
@@ -25,6 +27,8 @@
   --color-cta-hover: var(--cta-hover);
   --color-secondary: var(--secondary);
   --color-secondary-hover: var(--secondary-hover);
+  --color-danger: var(--danger);
+  --color-caution: var(--caution);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

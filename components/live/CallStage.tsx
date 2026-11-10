@@ -53,9 +53,9 @@ export function CallStage() {
           <Wordmark />
         </div>
         <div className="flex items-center gap-3 text-sm">
-          <p className="hidden truncate text-muted sm:block">
+          <h1 className="max-w-[8rem] truncate text-sm text-foreground sm:max-w-[14rem]">
             {profile ? `${profile.kind} · ${profile.role}` : "Session"}
-          </p>
+          </h1>
           <p className="tabular-nums text-foreground">{clock}</p>
           <button
             type="button"

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HudFrame } from "@/components/hud/HudFrame";
+import { HomeDemo } from "@/components/home/HomeDemo";
 import { button } from "@/lib/ui";
 
 const signals = [
@@ -45,38 +45,23 @@ export function HomePage() {
             </Link>
           </div>
         </div>
-        <div>
-          <p className="mb-3 text-[11px] uppercase tracking-[0.16em] text-muted">
-            Affichage pendant l&apos;appel
-          </p>
-          <HudFrame
-            status="live"
-            pace="too-fast"
-            paceMessage="Parlez un peu plus lentement"
-            wordsPerMinute={184}
-            suggestions={[
-              { id: "preview-a", text: "Utilisez la méthode STAR" },
-              { id: "preview-b", text: "Mentionnez votre expérience chez un produit proche" },
-              { id: "preview-c", text: "Un chiffre, puis le contexte" },
-            ]}
-            alert="Revenez vers la caméra"
-          />
-        </div>
+        <HomeDemo />
       </div>
 
-      <ol className="mt-16 divide-y divide-line border-y border-line">
-        {signals.map((signal) => (
-          <li key={signal.kicker} className="grid gap-2 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
-            <h2 className="text-[11px] uppercase tracking-[0.16em] text-muted">
-              {signal.kicker}
-            </h2>
-            <div>
-              <p className="text-base font-medium text-foreground">{signal.title}</p>
-              <p className="mt-1 max-w-xl text-sm leading-6 text-muted">{signal.body}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
+      <section className="mt-16">
+        <h2 className="text-base font-medium text-foreground">Ce que le copilote suit</h2>
+        <ol className="mt-4 divide-y divide-line border-y border-line">
+          {signals.map((signal) => (
+            <li key={signal.kicker} className="grid gap-2 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
+              <h3 className="text-[11px] uppercase tracking-[0.16em] text-muted">{signal.kicker}</h3>
+              <div>
+                <p className="text-base font-medium text-foreground">{signal.title}</p>
+                <p className="mt-1 max-w-xl text-sm leading-6 text-muted">{signal.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
 
       <section className="mt-14 grid gap-8 border-t border-line pt-10 sm:grid-cols-[1.2fr_0.8fr]">
         <div>

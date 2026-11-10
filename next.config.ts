@@ -1,13 +1,16 @@
 import type { NextConfig } from "next";
 
 const pages = process.env.GITHUB_PAGES === "1";
+const basePath = "/mockinterview";
 
 const nextConfig: NextConfig = {
   ...(pages
     ? {
         output: "export" as const,
-        basePath: "/mockinterview",
+        basePath,
+        trailingSlash: true,
         images: { unoptimized: true },
+        env: { NEXT_PUBLIC_BASE_PATH: basePath },
       }
     : {
         cacheComponents: true,

@@ -8,6 +8,7 @@ import {
   priceIdFor,
   type PaidPlanId,
 } from "@/lib/paddle";
+import { offersReturnUrl } from "@/lib/appPath";
 import { readPaddleCookie } from "@/lib/paddleCookie";
 
 type PaidHandler = (planId: PaidPlanId) => void;
@@ -37,7 +38,6 @@ function ensurePaddle(token: string): Promise<Paddle | undefined> {
             .map((item) => planIdFromPrice(item.price_id))
             .find((id) => id != null);
           if (planId) {
-            onNotice?.(null);
             onPaid?.(planId);
           } else {
             onNotice?.("Paddle a confirmé un paiement qui ne correspond à aucune offre.");
@@ -81,7 +81,7 @@ export async function openPaddleCheckout(planId: PaidPlanId): Promise<void> {
       theme: "light",
       locale: "fr",
       variant: "one-page",
-      successUrl: `${window.location.origin}/offres`,
+      successUrl: offersReturnUrl(),
     },
   });
 }

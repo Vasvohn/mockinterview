@@ -4,15 +4,15 @@ import { button } from "@/lib/ui";
 import type { SessionStatus, SpeechPace, Suggestion } from "@/lib/types";
 
 const paceTone: Record<SpeechPace, string> = {
-  "too-fast": "bg-rose-600",
+  "too-fast": "bg-danger",
   optimal: "bg-cta",
-  "too-slow": "bg-amber-500",
+  "too-slow": "bg-caution",
 };
 
 const paceText: Record<SpeechPace, string> = {
-  "too-fast": "text-rose-700",
+  "too-fast": "text-danger",
   optimal: "text-cta",
-  "too-slow": "text-amber-700",
+  "too-slow": "text-caution",
 };
 
 const statusLabel: Record<SessionStatus, string> = {
@@ -108,11 +108,9 @@ export function HudFrame({
             style={{ left: `calc(${marker}% - 5px)` }}
           />
         </div>
-        <p className={`mt-2 text-[13px] ${paceText[pace]}`}>
+        <p className={`mt-2 text-[13px] font-medium ${paceText[pace]}`}>
           {paceMessage}
-          {wordsPerMinute > 0 ? (
-            <span className="text-muted"> · {wordsPerMinute} mots/min</span>
-          ) : null}
+          {wordsPerMinute > 0 ? <span> · {wordsPerMinute} mots/min</span> : null}
         </p>
       </div>
 
@@ -137,37 +135,24 @@ export function HudFrame({
         )}
       </div>
 
-      {alert ? <p className="mt-3 text-[12px] leading-5 text-amber-800">{alert}</p> : null}
+      {alert ? <p className="mt-3 text-[13px] font-medium leading-5 text-caution">{alert}</p> : null}
 
-      {interactive ? (
-        <div className="mt-4 flex gap-2">
-          <button
-            type="button"
-            className={button.quiet}
-            onClick={onTogglePause}
-            disabled={ended}
-            aria-pressed={paused}
-          >
-            {paused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
-            {paused ? "Reprendre" : "Pause"}
-          </button>
-          <button type="button" className={button.quiet} onClick={onStop} disabled={ended}>
-            <Square className="h-3.5 w-3.5" />
-            Stop
-          </button>
-        </div>
-      ) : (
-        <div className="mt-4 flex gap-2" aria-hidden>
-          <span className={button.quiet}>
-            <Pause className="h-3.5 w-3.5" />
-            Pause
-          </span>
-          <span className={button.quiet}>
-            <Square className="h-3.5 w-3.5" />
-            Stop
-          </span>
-        </div>
-      )}
+      <div className="mt-4 flex gap-2">
+        <button
+          type="button"
+          className={button.quiet}
+          onClick={onTogglePause}
+          disabled={!interactive || ended}
+          aria-pressed={paused}
+        >
+          {paused ? <Play className="h-3.5 w-3.5" aria-hidden /> : <Pause className="h-3.5 w-3.5" aria-hidden />}
+          {paused ? "Reprendre" : "Pause"}
+        </button>
+        <button type="button" className={button.quiet} onClick={onStop} disabled={!interactive || ended}>
+          <Square className="h-3.5 w-3.5" aria-hidden />
+          Stop
+        </button>
+      </div>
     </section>
   );
 }
